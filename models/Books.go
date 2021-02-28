@@ -34,6 +34,7 @@ func ConnectionDB() {
 	db.AutoMigrate(&Book{})
 
 }
+// kitap ekleme
 func CreateBookModel(book Book) {
 	ConnectionDB()
 	db.Create(&Book{ISBN: book.ISBN, Author_id: book.Author_id, Publisher_id: book.Publisher_id, Catalog_id: book.Catalog_id, Title: book.Title,
