@@ -1,6 +1,8 @@
 package Book
 
 import (
+	"os"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -25,7 +27,11 @@ var err error
 var book Book
 
 func ConnectionDB() {
-	dsn = "burak:1234@tcp(127.0.0.1:3306)/kutuphane?charset=utf8mb4&parseTime=True&loc=Local"
+	host := os.Getenv("MYSQL_DB_HOST")
+	dbName := os.Getenv("MYSQL_DB")
+	user := os.Getenv("MYSQL_DB_USER")
+	pass := os.Getenv("MYSQL_DB_PASS")
+	dsn = user + ":" + pass + "@tcp(" + host + ")/" + dbName + "?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
@@ -34,6 +40,7 @@ func ConnectionDB() {
 	db.AutoMigrate(&Book{})
 
 }
+
 // kitap ekleme
 func CreateBookModel(book Book) {
 	ConnectionDB()
@@ -51,7 +58,7 @@ func DeleteBookModel(id int) {
 	ConnectionDB()
 	var book Book
 
-	db.Where("id = ?",id).Delete(&book)
+	db.Where("id = ?", id).Delete(&book)
 }
 func SelectAll() []Book {
 	ConnectionDB()

@@ -1,10 +1,11 @@
 package main
 
 import (
-	. "./routes"
+	. "github.com/glburak/golangRestApiMysql/routes"
 )
 
 func main() {
+
 	Routers()
 
 }

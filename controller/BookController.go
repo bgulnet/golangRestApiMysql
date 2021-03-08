@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
-	. "../models"
+	. "github.com/glburak/golangRestApiMysql/models"
 	"github.com/gorilla/mux"
 )
 
@@ -59,8 +59,8 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	//w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
-	 id,_ := strconv.Atoi(params["id"])
-	
+	id, _ := strconv.Atoi(params["id"])
+
 	DeleteBookModel(id)
 	//json.NewEncoder(w).Encode(params)
 	//defer r.Body.Close()
