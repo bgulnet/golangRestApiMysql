@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	. "../controller"
+	. "github.com/glburak/golangRestApiMysql/controller"
 	"github.com/gorilla/mux"
 )
 
